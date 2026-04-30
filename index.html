@@ -17,21 +17,35 @@
 <body class="text-gray-950">
 
     <nav class="glass-nav py-4 sticky top-0 z-50 border-b border-gray-100/50">
-        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
-            <h1 class="text-xl font-black tracking-tighter">
-                NAJWA<span class="text-red-600">.</span>STUDIO
-            </h1>
-            <div class="flex md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
-                <a href="http://najwa.test/" class="text-gray-900">Home</a>
-                <a href="http://najwa.test/#katalog" class="hover:text-red-600 transition-colors">Portfolio</a>
-                <a href="http://najwa.test/service" class="hover:text-red-600 transition-colors">Services</a>
-                <a href="http://najwa.test/contact" class="hover:text-red-600 transition-colors">Contact</a>
-            </div>
-            <a href="http://najwa.test/admin" class="px-5 py-2 bg-gray-950 text-white text-[9px] font-bold rounded-full hover:bg-red-600 transition-all tracking-widest">
-                ADMIN PANEL
-            </a>
-        </div>
-    </nav>
+  <div class="container mx-auto px-6 md:px-12 flex justify-between items-center">
+    <h1 class="text-xl font-black tracking-tighter">
+      NAJWA<span class="text-red-600">.</span>STUDIO
+    </h1>
+    
+    <!-- Menu Desktop -->
+    <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+      <a href="#home" class="hover:text-gray-900">HOME</a>
+      <a href="#portfolio" class="hover:text-gray-900">PORTFOLIO</a>
+      <a href="#services" class="hover:text-gray-900">SERVICES</a>
+      <a href="#contact" class="hover:text-gray-900">CONTACT</a>
+    </div>
+
+    <!-- Tombol Garis 3 buat HP -->
+    <button id="mobile-menu-button" class="md:hidden">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu HP, muncul pas tombol di-klik -->
+  <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-1">
+    <a href="#home" class="block py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">HOME</a>
+    <a href="#portfolio" class="block py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">PORTFOLIO</a>
+    <a href="#services" class="block py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">SERVICES</a>
+    <a href="#contact" class="block py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600">CONTACT</a>
+  </div>
+</nav>
 
     <main class="container mx-auto px-6 md:px-12 py-8">
         
@@ -128,25 +142,33 @@
     </div>
 
     <script>
-        function openPayment(title, price) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalPrice').innerText = 'Rp ' + parseInt(price).toLocaleString('id-ID');
-            document.getElementById('paymentModal').classList.remove('hidden');
-        }
+  // Script Payment Modal
+  function openPayment(title, price) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalPrice').innerText = 'Rp ' + parseInt(price).toLocaleString('id-ID');
+    document.getElementById('paymentModal').classList.remove('hidden');
+  }
+  function closePayment() {
+    document.getElementById('paymentModal').classList.add('hidden');
+  }
+  function completePayment() {
+    alert('Pembayaran Berhasil! Tim kami akan menghubungi Anda.');
+    closePayment();
+  }
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('paymentModal')) {
+      closePayment();
+    }
+  }
 
-        function closePayment() {
-            document.getElementById('paymentModal').classList.add('hidden');
-        }
-
-        function completePayment() {
-            alert('Pembayaran Berhasil! Tim kami akan menghubungi Anda.');
-            closePayment();
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('paymentModal')) { closePayment(); }
-        }
-    </script>
+  // Script Hamburger Menu
+  const btn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
 
 
-</body></html>
+</body>
+</html>
